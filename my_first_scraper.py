@@ -13,17 +13,19 @@ def extract(page):
     rs = soup.find_all("article", class_="Box-row")
     for r in rs:
         bun = []
-        r_h1 = r.select_one("h1.h3.lh-condensed")
+        r_h2 = r.select_one("h2.h3.lh-condensed")
         stars = r.select_one("span.d-inline-block.float-sm-right").text.strip()
         bun.append(stars)
         name = r.select_one("img.avatar.mb-1.avatar-user")["alt"]
         bun.append(name)
-        re_name = r_h1.select_one("a")["href"]
+        re_name = r_h2.select_one("a")["href"]
         bun.append(re_name)
         bu.append(bun)
 
-        # print(bun)
-    return bu
+
+        print(bun)
+    return bun
+    
 
 
 def transform(html_repos):
@@ -48,5 +50,4 @@ def check():
     bun = transform(buns)
     format(bun)
 
-
-check
+check()
